@@ -13,6 +13,9 @@ plugins {
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    maven {         
+        url = uri("https://mvnrepository.com")
+    }
 }
 
 dependencies {
@@ -21,13 +24,20 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+
+
+  // use the versions from the platform
+
+    implementation("org.hibernate.orm:hibernate-core:6.6.13.Final")
+    implementation("jakarta.persistence:jakarta.persistence-api:3.2.0")
     
+    // implementation ("org.hibernate.orm:hibernate-core:6.6.13.Final")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(24)
     }
 }
 

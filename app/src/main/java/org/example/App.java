@@ -3,6 +3,9 @@
  */
 package org.example;
 
+import org.example.Cat;
+import org.example.Owner;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
