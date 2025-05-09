@@ -11,4 +11,8 @@ plugins {
 }
 
 rootProject.name = "spring_lab"
-include("app")
+
+include("app.module")
+include("services.module") 
+include("data-access.module")
+

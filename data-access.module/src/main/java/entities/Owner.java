@@ -1,15 +1,14 @@
-package org.example;
+package entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.annotation.processing.Generated;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,13 +17,25 @@ public class Owner {
 
     @Id
     @GeneratedValue()
-    public Integer id;
-    @Column
-    public String name;
-    @Column
-    public List<Cat> owned;
-    @Column
-    public Date birthDate;
+    private int id;
+    @Column(nullable = false)
+    private String name;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Cat> cats;
+
+    @Column(nullable = false)
+    private Date birthDate;
+
+    public Owner() {
+        cats = new ArrayList<>();
+    }
+
+    public Owner(String name, Date birthDate) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.cats = new ArrayList<>();
+    }
 
     public Integer getId() {
         return id;
@@ -43,11 +54,11 @@ public class Owner {
     }
 
     public List<Cat> getOwned() {
-        return owned;
+        return cats;
     }
 
-    public void setOwned(List<Cat> owned) {
-        this.owned = owned;
+    public void setOwned(List<Cat> cats) {
+        this.cats = cats;
     }
 
     public Date getBirthDate() {

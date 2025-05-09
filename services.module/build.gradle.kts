@@ -7,7 +7,7 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    application
+    id("java")
 }
 
 repositories {
@@ -19,19 +19,7 @@ repositories {
 }
 
 dependencies {
-    // Use JUnit test framework.
-    testImplementation(libs.junit)
-
-    // This dependency is used by the application.
-    implementation(libs.guava)
-
-
-  // use the versions from the platform
-
-    implementation("org.hibernate.orm:hibernate-core:6.6.13.Final")
-    implementation("jakarta.persistence:jakarta.persistence-api:3.2.0")
-    
-    // implementation ("org.hibernate.orm:hibernate-core:6.6.13.Final")
+    implementation(project(":data-access.module"))
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -41,7 +29,3 @@ java {
     }
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = "org.example.App"
-}
