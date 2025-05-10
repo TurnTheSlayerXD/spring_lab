@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/repositories/build/libs/repositories.jar!/" />
+      <root url="jar://$PROJECT_DIR$/repositories/build/libs/data-access.module.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
