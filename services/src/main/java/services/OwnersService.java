@@ -10,6 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import repositories.OwnersRepository;
 
+import java.util.List;
+
 
 @ComponentScan("repositories")
 @Service
@@ -24,6 +26,12 @@ public class OwnersService {
         }
         return mapToGetDto(opt.get());
     }
+
+    public List<GetOwnerDto> getAll() throws Exception {
+        var owners = repo.findAll();
+        return owners.stream().map(this::mapToGetDto).toList();
+    }
+
 
     public GetOwnerDto post(PostOwnerDto dto) {
         return mapToGetDto(repo.save(mapFromPostDto(dto)));
