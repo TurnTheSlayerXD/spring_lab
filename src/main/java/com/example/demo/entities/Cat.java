@@ -26,20 +26,21 @@ public class Cat {
     @GeneratedValue(strategy = GenerationType.AUTO) // or IDENTITY, SEQUENCE
     private Long id;
 
+    @Column(nullable=false)
     private String name;
 
-    @Column
+    @Column(nullable=false)
     private Date birthdate;
 
-    @Column
+    @Column(nullable=false)
     private String breed;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "color")
+    @Column(name = "color", nullable=false)
     private Color color;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "owner_id", nullable=false)
     private Owner owner;
 
     public Long getId(){

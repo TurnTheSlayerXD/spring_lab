@@ -4,12 +4,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 
 
-public class PatchCatDto {
-    @NotEmpty
-    @Pattern(regexp="add_friend|remove_friend")
-    public String action;
-
+public class FriendshipCatDto {
     @NotEmpty
     public Long friendId;
 
+    @Override
+    public String toString(){
+        return String.format("FriendshipCatDto: friendId=%d", friendId);
+    }
 }

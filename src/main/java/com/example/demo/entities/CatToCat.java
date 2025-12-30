@@ -23,14 +23,14 @@ public class CatToCat {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cat_first_id")
+    @JoinColumn(name = "cat_first_id", nullable=false)
     private Cat catFirst;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cat_second_id")
+    @JoinColumn(name = "cat_second_id", nullable=false)
     private Cat catSecond;
 
-    @Column(name="created_at")
+    @Column(name="created_at", nullable=false)
     Date createdAt;
 
 

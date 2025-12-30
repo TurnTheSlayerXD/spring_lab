@@ -19,10 +19,10 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.AUTO) // or IDENTITY, SEQUENCE
     private Long id;
 
-    @Column
+    @Column(nullable=false)
     private String name;
 
-    @Column
+    @Column(nullable=false)
     private Date birthdate;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)

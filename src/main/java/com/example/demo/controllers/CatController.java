@@ -2,6 +2,8 @@ package com.example.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +19,12 @@ import com.example.mappers.CatMapper;
 import com.example.dto.GetCatDto;
 import com.example.dto.FullGetCatDto;
 import com.example.dto.CreateCatDto;
-import com.example.dto.PatchCatDto;
+import com.example.dto.FriendshipCatDto;
+import com.example.dto.GetFriendshipCatDto;
 
+
+import com.example.exceptions.FriendshipAlreadyExistsException;
+import com.example.exceptions.CannotBeFriendWithItselfException;
 
 @RestController
 public class CatController {
@@ -47,13 +53,14 @@ public class CatController {
     }
 
     @PostMapping("/record/cats/{id}")
-    public FullGetCatDto patch(@PathVariable("id") Long id, @Valid @RequestBody PatchCatDto patch) throws FriendshipAlreadyExistsException{
-        if (patch.action == "add_friend"){
-            return catService.addFriend(id, patch);
-        }
-        else if (patch.action == "remove_friend"){
-            throw new UnsupportedOperationException();
-        }
-        throw new UnsupportedOperationException();
+    public FullGetCatDto addFriendship(@PathVariable("id") Long id, @Valid @RequestBody FriendshipCatDto patch) throws FriendshipAlreadyExistsException, CannotBeFriendWithItselfException {
+        System.out.printf("%s\n", patch.toString());
+        return catService.addFriend(id, patch.friendId);
+    }
+
+    @DeleteMapping("/record/cats/{id}")
+    public GetFriendshipCatDto removeFriendship(@PathVariable("id") Long id, @Valid @RequestBody FriendshipCatDto patch) {
+        System.out.printf("%s\n", patch.toString());
+        return catService.removeFriend(id, patch.friendId);
     }
 }
